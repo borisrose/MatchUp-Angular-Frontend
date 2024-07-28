@@ -1,0 +1,8 @@
+<form [id]="data.id" class="form custom-form">
+  <section class="form__fields">
+    <app-field *ngFor="let field of data.fields" [data]="field"></app-field>
+  </section>
+  <section class="form__buttons">
+    <app-button *ngFor="let btn of data.buttons" [data]="btn"></app-button>
+  </section>
+</form>

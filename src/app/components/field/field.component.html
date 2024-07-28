@@ -1,0 +1,18 @@
+<article class="control has-icons-left custom-field">
+  <section class="field__input">
+    <span class="icon is-left">
+      <fa-icon [icon]="data.icon"></fa-icon>
+    </span>
+    <div aria-label="label et champs de saisi">
+      <label [for]="data.id"></label>
+      <input
+        [id]="data.id"
+        [placeholder]="data.placeholder"
+        [type]="data.type ? data.type : 'text'"
+        class="input is-normal"
+      />
+    </div>
+
+  </section>
+  <section [id]="data.id+'-error'" class="field__error"></section>
+</article>

@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+body {
+
+  min-height: 100vh;
+  & > :first-child {
+    display: flex;
+    flex-direction: column;
+
+    & > :nth-child(3) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  border: solid black  2px;
+}
+
+%center {
+  align-items: center;
+  justify-content: center;
+}
+
+%darken-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: color;
+}
