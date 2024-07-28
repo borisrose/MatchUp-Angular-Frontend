@@ -7,10 +7,11 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    flex-direction: column;
     @extend %center;
     @extend %darken-bg;
 
-    & > section {
+    & > section:has(form) {
       width: 400px;
     }
   }

@@ -10,9 +10,16 @@
         [placeholder]="data.placeholder"
         [type]="data.type ? data.type : 'text'"
         class="input is-normal"
+        [(ngModel)]="model[data.id]"
       />
     </div>
-
   </section>
-  <section [id]="data.id+'-error'" class="field__error"></section>
+  <section
+    [id]="data.id+'-error'"
+    class="field__error"
+  >
+  <ng-container *ngIf="errorMessages[data.id]">
+    <small>{{ errorMessages[data.id]}}</small>
+  </ng-container>
+  </section>
 </article>

@@ -1,29 +1,51 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NotificationComponent } from './features/notification/components/notification/notification.component';
+import { NotificationService } from './features/notification/services/notification.service';
+import { BehaviorSubject } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let notificationService: NotificationService;
+  let notificationStateSubject: BehaviorSubject<any>;
+
   beforeEach(async () => {
+    notificationStateSubject = new BehaviorSubject<any>({});
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent,
+        NotificationComponent
+      ],
+      providers: [
+        { provide: NotificationService, useValue: {
+          notificationState: notificationStateSubject.asObservable(),
+          updateNotificationState: jest.fn()
+        }}
+      ]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'MatchUp-App' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('MatchUp-App');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    notificationService = TestBed.inject(NotificationService);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, MatchUp-App');
   });
+
+  afterEach(() => {
+    notificationStateSubject.complete();
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render the notification component', () => {
+    const notificationComponent = fixture.debugElement.query(By.directive(NotificationComponent));
+    expect(notificationComponent).toBeTruthy();
+  });
+
+  // Ajoutez d'autres tests ici
 });

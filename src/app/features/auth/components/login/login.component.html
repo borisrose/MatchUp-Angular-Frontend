@@ -1,5 +1,11 @@
 <main class="main login__main">
     <section class="login__form">
-        <app-form [data]="formData"></app-form>
+        <app-form
+          [data]="formData"
+          [handler]="onSubmit"
+          [formInputValues]="formInputValues"
+          [errorMessages]="errorMessages"
+        ></app-form>
     </section>
+    <section class="overlay" *ngIf="isLoading"></section>
 </main>

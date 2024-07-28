@@ -1,8 +1,13 @@
-<form [id]="data.id" class="form custom-form">
+<form [id]="data.id" class="form custom-form" (submit)="handler($event)">
   <section class="form__fields">
-    <app-field *ngFor="let field of data.fields" [data]="field"></app-field>
+    <app-field *ngFor="let field of data.fields" [data]="field" [model]="formInputValues" [errorMessages]="errorMessages"></app-field>
   </section>
   <section class="form__buttons">
     <app-button *ngFor="let btn of data.buttons" [data]="btn"></app-button>
+  </section>
+  <section class="form__errors">
+    <ng-container *ngIf="errorMessages.global">
+      <small>{{ errorMessages.global }}</small>
+    </ng-container>
   </section>
 </form>
